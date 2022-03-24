@@ -19,13 +19,17 @@ module.exports = {
                 type: 'asset', // Tells WP to decide for us if it should be resource or inline base on asset file size (default 8Kb)
                 parser: {   // Optional setting, for when you want to change the default file-size of the check
                     dataUrlCondition: {
-                        maxSize: 3 * 1024 // 3 kilobutes
+                        maxSize: 8 * 1024 // 8 kilobutes
                     }
                 }
             },
             {
                 test: /\.svg$/,
                 type: 'asset/inline' // Tells WB to add the asset as a Base64 encoded string directly in the output JS. That can make bundle sized large so use with careful consideration
+            },
+            {
+                test: /\.txt$/,
+                type: 'asset/source' // Tells WP to import the contents of this asset and incluse it inlne, as-is as a JS string
             }
         ]
     }
