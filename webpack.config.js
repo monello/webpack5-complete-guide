@@ -30,6 +30,13 @@ module.exports = {
             {
                 test: /\.txt$/,
                 type: 'asset/source' // Tells WP to import the contents of this asset and incluse it inlne, as-is as a JS string
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader', // Used to inject CSS into a page using Styled Text. This bundles the CSS with the JS into the final bundled file
+                    'css-loader',    // Reads content of CSS files and returns the content, but doesn't do anything else with it
+                ]
             }
         ]
     }
