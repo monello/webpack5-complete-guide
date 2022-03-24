@@ -10,9 +10,18 @@ module.exports = {
     mode: 'none',   // This will be where you state the environment this config is intended for: 'development', `production` or 'none'
     module: {
         rules: [
+            // {
+            //     test: /\.(jpg|png)$/,   // When Webpack find and "import" statement in a file that has one of these file extenstion it will process is as per "type" below...
+            //     type: 'asset/resource' // Tells WP to add it as a separate file in the (output dir) dist-folder. The file-name will be MD4-hashed
+            // },
             {
-                test: /\.(jpg|png)$/,   // When Webpack find and "import" statement in a file that has one of these file extenstion it will process is as per "type" below...
-                type: 'asset/resource' // Tells WP to add it as a separate file in the (output dir) dist-folder. The file-name will be MD4-hashed
+                test: /\.(jpg|png)$/,
+                type: 'asset', // Tells WP to decide for us if it should be resource or inline base on asset file size (default 8Kb)
+                parser: {   // Optional setting, for when you want to change the default file-size of the check
+                    dataUrlCondition: {
+                        maxSize: 3 * 1024 // 3 kilobutes
+                    }
+                }
             },
             {
                 test: /\.svg$/,
