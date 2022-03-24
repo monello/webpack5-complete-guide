@@ -34,8 +34,18 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader', // Used to inject CSS into a page using Styled Text. This bundles the CSS with the JS into the final bundled file
-                    'css-loader',    // Reads content of CSS files and returns the content, but doesn't do anything else with it
+                    // The order is important. Webpack runs these loaders from right-to-left (or in the way I indented mine, bottom-up)
+                    'style-loader',     // 2. Used to inject CSS into a page using Styled Text. This bundles the CSS with the JS into the final bundled file
+                    'css-loader',       // 1. Reads content of CSS files and returns the content, but doesn't do anything else with it
+                ]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    // The order is important. Webpack runs these loaders from right-to-left (or in the way I indented mine, bottom-up)
+                    'style-loader',     // 3. Used to inject CSS into a page using Styled Text. This bundles the CSS with the JS into the final bundled file
+                    'css-loader',       // 2. Reads content of CSS files and returns the content, but doesn't do anything else with it
+                    'sass-loader'       // 1. Converts SASS to CSS
                 ]
             }
         ]
