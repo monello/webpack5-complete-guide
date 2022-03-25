@@ -1,4 +1,5 @@
 const path = require('path');
+const TersetPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',    // Webpack will use this as you application entry point from where to start building up it's depencenct tree
@@ -49,5 +50,8 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugins: [
+        new TersetPlugin()
+    ]
 };
