@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: './src/index.js',    // Webpack will use this as you application entry point from where to start building up it's depencenct tree
     output: {
-        filename: 'bundle.js',  // Here we tell WP what to call out bundled JS file
+        filename: 'bundle.[contenthash].js',  // Here we tell WP what to call out bundled JS file
         path: path.resolve(__dirname, 'dist'), // Here we tell WP where to place the file. WP will create this dir-structure if it does not yet exist. The path MUST be an absolute-path, so we can use the Node package "path", to help generate it
         publicPath: 'dist/'     // Tells Webpack where to files your static resoursce (absolute-path). You can also specify a CDN here or a your seperate image server etc. It is also used if you implement "Module Federation". Since WP5, if it's simply just your 'dist' dir you can ommit the 'publicPath` setting altogether.
     },
@@ -55,7 +55,7 @@ module.exports = {
     plugins: [
         new TerserPlugin(),             // This plugin minifies the output bundle
         new MiniCssExtractPlugin({      // This plugin is used to extract CSS into a separate bundle
-            filename: 'styles.css'      // Here you procide the name for the CSS bundle
+            filename: 'styles.[contenthash].css'      // Here you procide the name for the CSS bundle
         })
     ]
 };
