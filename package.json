@@ -21,6 +21,7 @@
     "devDependencies": {
         "clean-webpack-plugin": "^4.0.0",
         "css-loader": "^6.7.1",
+        "handlebars-loader": "^1.7.1",
         "html-webpack-plugin": "^5.5.0",
         "mini-css-extract-plugin": "^2.6.0",
         "sass-loader": "^12.6.0",
@@ -28,6 +29,7 @@
         "webpack-cli": "^4.9.2"
     },
     "dependencies": {
+        "handlebars": "^4.7.7",
         "sass": "^1.49.9"
     }
 }

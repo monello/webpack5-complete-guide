@@ -52,6 +52,10 @@ module.exports = {
                     'css-loader',                   // 2. Reads content of CSS files and returns the content, but doesn't do anything else with it
                     'sass-loader'                   // 1. Converts SASS to CSS
                 ]
+            },
+            {
+                test: /\.hbs$/,
+                use: ['handlebars-loader']
             }
         ]
     },
@@ -71,11 +75,13 @@ module.exports = {
 
         // See full list of available options here: https://github.com/jantimon/html-webpack-plugin#options
         new HtmlWebpackPlugin({
-            title: 'Hello World',    // Specify the title (inside the <title></title> tags) you want Webpack to use for the index.html it generates
+            template: 'src/index.hbs',
+            title: 'Hello World with handlebars',    // Specify the title (inside the <title></title> tags) you want Webpack to use for the index.html it generates
+            description: 'Some desctipion', // When using a template, you specify everything on this level (unlike below)
             // filename: 'subfolder/constum_filename.html',  // You can optionally change the index.html file's name and folder
-            meta: {   // Here you can specify any meta-tags you want to have added to the index.html file
-                description: 'Some desctipion'
-            }
+            // meta: {   // Here you can specify any meta-tags you want to have added to the index.html file
+            //     description: 'Some desctipion'
+            // }
         })
     ]
 };
