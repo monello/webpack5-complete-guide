@@ -11,6 +11,16 @@ module.exports = {
         publicPath: ''     // Now that we use the "html-webpack-plugin" and index.html file is generated and placed inside the dist folder, we now need to ensure the paths to the included JS and CSS files load from the same folder as the new index.html file
     },
     mode: 'development',   // This will be where you state the environment this config is intended for: 'development', `production` or 'none'
+    devServer: {            // This is where you hook-up Webpack to the webpack-dev-server package
+        port: 9000,
+        static: {           // Tells Webpack and webpack-dev-server, where the folder with the files are to serve
+            directory: path.resolve(__dirname, 'dist') // The same as above in the output property-
+        },
+        devMiddleware: {
+            index: 'index.html',        // Tell the dev server which HTML file to use when serving th app
+            writeToDisk: false           // By default Webpack writes bundles to memory while in development mode (dist folder would be empty), Setting it to true will write the files to dist
+        }
+    },
     module: {
         rules: [
             // {
@@ -70,7 +80,7 @@ module.exports = {
         // See full list of available options here: https://github.com/jantimon/html-webpack-plugin#options
         new HtmlWebpackPlugin({
             template: 'src/index.hbs',
-            title: 'Hello World with handlebars',    // Specify the title (inside the <title></title> tags) you want Webpack to use for the index.html it generates
+            title: 'Hello World',    // Specify the title (inside the <title></title> tags) you want Webpack to use for the index.html it generates
             description: 'Some desctipion', // When using a template, you specify everything on this level (unlike below)
             // filename: 'subfolder/constum_filename.html',  // You can optionally change the index.html file's name and folder
             // meta: {   // Here you can specify any meta-tags you want to have added to the index.html file
