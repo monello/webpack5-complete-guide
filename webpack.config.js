@@ -68,6 +68,14 @@ module.exports = {
         //         path.join(process.cwd(), 'someotherfolder/**/**') // This means, clean all files and directories within the "someotherfolder" directory
         //     ]
         // })
-        new HtmlWebpackPlugin()
+
+        // See full list of available options here: https://github.com/jantimon/html-webpack-plugin#options
+        new HtmlWebpackPlugin({
+            title: 'Hello World',    // Specify the title (inside the <title></title> tags) you want Webpack to use for the index.html it generates
+            // filename: 'subfolder/constum_filename.html',  // You can optionally change the index.html file's name and folder
+            meta: {   // Here you can specify any meta-tags you want to have added to the index.html file
+                description: 'Some desctipion'
+            }
+        })
     ]
 };
