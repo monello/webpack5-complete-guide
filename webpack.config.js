@@ -1,6 +1,7 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',    // Webpack will use this as you application entry point from where to start building up it's depencenct tree
@@ -56,6 +57,14 @@ module.exports = {
         new TerserPlugin(),             // This plugin minifies the output bundle
         new MiniCssExtractPlugin({      // This plugin is used to extract CSS into a separate bundle
             filename: 'styles.[contenthash].css'      // Here you procide the name for the CSS bundle
-        })
+        }),
+        new CleanWebpackPlugin()        // This plugin will delete everything inside the file we specify above in the "output" section of the config, before it re-builds the app
+        // // You can also clean any other folders if you had any that needs cleaning
+        // new CleanWebpackPlugin({
+        //     cleanOnceBeforeBuildPatterns: [
+        //         '**/*',  // This means, clean all files and directories
+        //         path.join(process.cwd(), 'someotherfolder/**/**') // This means, clean all files and directories within the "someotherfolder" directory
+        //     ]
+        // })
     ]
 };
