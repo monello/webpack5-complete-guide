@@ -1,5 +1,6 @@
 const path = require('path');
-const TersetPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: './src/index.js',    // Webpack will use this as you application entry point from where to start building up it's depencenct tree
@@ -36,22 +37,25 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     // The order is important. Webpack runs these loaders from right-to-left (or in the way I indented mine, bottom-up)
-                    'style-loader',     // 2. Used to inject CSS into a page using Styled Text. This bundles the CSS with the JS into the final bundled file
-                    'css-loader',       // 1. Reads content of CSS files and returns the content, but doesn't do anything else with it
+                    MiniCssExtractPlugin.loader,    // 2. Used to inject CSS into a page using Styled Text. This bundles the CSS with the JS into the final bundled file
+                    'css-loader',                   // 1. Reads content of CSS files and returns the content, but doesn't do anything else with it
                 ]
             },
             {
                 test: /\.scss$/,
                 use: [
                     // The order is important. Webpack runs these loaders from right-to-left (or in the way I indented mine, bottom-up)
-                    'style-loader',     // 3. Used to inject CSS into a page using Styled Text. This bundles the CSS with the JS into the final bundled file
-                    'css-loader',       // 2. Reads content of CSS files and returns the content, but doesn't do anything else with it
-                    'sass-loader'       // 1. Converts SASS to CSS
+                    MiniCssExtractPlugin.loader,    // 3. Used to inject CSS into a page using Styled Text. This bundles the CSS with the JS into the final bundled file
+                    'css-loader',                   // 2. Reads content of CSS files and returns the content, but doesn't do anything else with it
+                    'sass-loader'                   // 1. Converts SASS to CSS
                 ]
             }
         ]
     },
     plugins: [
-        new TersetPlugin()
+        new TerserPlugin(),             // This plugin minifies the output bundle
+        new MiniCssExtractPlugin({      // This plugin is used to extract CSS into a separate bundle
+            filename: 'styles.css'      // Here you procide the name for the CSS bundle
+        })
     ]
 };
