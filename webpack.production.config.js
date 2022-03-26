@@ -8,7 +8,7 @@ module.exports = {
     output: {
         filename: 'bundle.[contenthash].js',
         path: path.resolve(__dirname, './dist'),
-        publicPath: ''
+        publicPath: '/static/'
     },
     mode: 'production',
     optimization: {
@@ -51,8 +51,8 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: [ '@babel/env' ],
-                        plugins: [ '@babel/plugin-proposal-class-properties' ]
+                        presets: ['@babel/env'],
+                        plugins: ['@babel/plugin-proposal-class-properties']
                     }
                 }
             },
