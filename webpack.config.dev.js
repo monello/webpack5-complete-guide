@@ -87,7 +87,7 @@ module.exports = {
             title: 'Hello World',               // Specify the title (inside the <title></title> tags) you want Webpack to use for the index.html it generates
             description: 'Hello World App',     // When using a template, you specify everything on this level (unlike below)
             filename: 'hello-world.html',       // You can optionally change the index.html file's name and folder
-            minify: true                        // Tells Webpack to minify the HTML file
+            minify: false                       // Tells Webpack to MOT minify the HTML file (technically we can leave it out as the default *seems* to be false, contrary to what the lecturer says)
         }),
         new HtmlWebpackPlugin({
             template: 'src/page-template.hbs',  // Tells Webpack which template to use (using a mustache template here '.hbs)
@@ -95,7 +95,7 @@ module.exports = {
             title: 'Island Image',              // Specify the title (inside the <title></title> tags) you want Webpack to use for the index.html it generates
             description: 'Island Image App',    // When using a template, you specify everything on this level (unlike below)
             filename: 'island-image.html',      // You can optionally change the index.html file's name and folder
-            minify: true                        // Tells Webpack to minify the HTML file
+            minify: false                       // Tells Webpack to MOT minify the HTML file (technically we can leave it out as the default *seems* to be false, contrary to what the lecturer says)
         })
     ]
 };
