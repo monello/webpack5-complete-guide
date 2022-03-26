@@ -3,9 +3,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',    // Webpack will use this as you application entry point from where to start building up it's depencenct tree
+    entry: {
+        'hello-world': './src/hello-world.js',    // Webpack will use this as you application entry point from where to start building up it's depencenct tree
+        'island-image': './src/island.js'
+    },
     output: {
-        filename: 'bundle.js',  // Here we tell WP what to call out bundled JS file
+        filename: '[name].bundle.js',  // Here we tell WP what to call out bundled JS file
         path: path.resolve(__dirname, 'dist'), // Here we tell WP where to place the file. WP will create this dir-structure if it does not yet exist. The path MUST be an absolute-path, so we can use the Node package "path", to help generate it
         // publicPath: 'dist/'     // Tells Webpack where to files your static resoursce (absolute-path). You can also specify a CDN here or a your seperate image server etc. It is also used if you implement "Module Federation". Since WP5, if it's simply just your 'dist' dir you can ommit the 'publicPath` setting altogether.
         publicPath: ''     // Now that we use the "html-webpack-plugin" and index.html file is generated and placed inside the dist folder, we now need to ensure the paths to the included JS and CSS files load from the same folder as the new index.html file
@@ -79,13 +82,20 @@ module.exports = {
 
         // See full list of available options here: https://github.com/jantimon/html-webpack-plugin#options
         new HtmlWebpackPlugin({
-            template: 'src/index.hbs',
-            title: 'Hello World',    // Specify the title (inside the <title></title> tags) you want Webpack to use for the index.html it generates
-            description: 'Some desctipion', // When using a template, you specify everything on this level (unlike below)
-            // filename: 'subfolder/constum_filename.html',  // You can optionally change the index.html file's name and folder
-            // meta: {   // Here you can specify any meta-tags you want to have added to the index.html file
-            //     description: 'Some desctipion'
-            // }
+            template: 'src/page-template.hbs',  // Tells Webpack which template to use (using a mustache template here '.hbs)
+            chunks: ['hello-world'],            // Tells webpack which bundles to include (script and include tags) in the HTML. This is defined in the "entry" prope (above) of this webpack config
+            title: 'Hello World',               // Specify the title (inside the <title></title> tags) you want Webpack to use for the index.html it generates
+            description: 'Hello World App',     // When using a template, you specify everything on this level (unlike below)
+            filename: 'hello-world.html',       // You can optionally change the index.html file's name and folder
+            minify: true                        // Tells Webpack to minify the HTML file
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/page-template.hbs',  // Tells Webpack which template to use (using a mustache template here '.hbs)
+            chunks: ['island-image'],           // Tells webpack which bundles to include (script and include tags) in the HTML. This is defined in the "entry" prope (above) of this webpack config
+            title: 'Island Image',              // Specify the title (inside the <title></title> tags) you want Webpack to use for the index.html it generates
+            description: 'Island Image App',    // When using a template, you specify everything on this level (unlike below)
+            filename: 'island-image.html',      // You can optionally change the index.html file's name and folder
+            minify: true                        // Tells Webpack to minify the HTML file
         })
     ]
 };
