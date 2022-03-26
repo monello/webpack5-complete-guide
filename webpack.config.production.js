@@ -18,7 +18,8 @@ module.exports = {
     mode: 'none',   // This will be where you state the environment this config is intended for: 'development', `production` or 'none'
     optimization: {     // Use to specify very specific optimizations to apply during the build process that can help make the bundles even smaller, fast, avoid module duplication of packages that are common between enrty points etc.
         splitChunks: {
-            chunks: 'all' // This tells webpack which chunks (bundles) should be optimized
+            chunks: 'all', // This tells webpack which chunks (bundles) should be optimized
+            minSize: 3000  // Optional: The minSize by default is 30000 (30Kb), here we set is down to 3000 (3Kb). Webpack only extracts common modules (optimize), if they exceed this minSize (be default 30Kb). The lecturer demo'd this by installing and importing React, which is less than 30kb so it was included in each bundle, until we set the minSize to 3kb
         }
     },
     module: {
