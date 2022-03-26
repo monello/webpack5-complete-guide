@@ -16,6 +16,11 @@ module.exports = {
         publicPath: ''     // Now that we use the "html-webpack-plugin" and index.html file is generated and placed inside the dist folder, we now need to ensure the paths to the included JS and CSS files load from the same folder as the new index.html file
     },
     mode: 'none',   // This will be where you state the environment this config is intended for: 'development', `production` or 'none'
+    optimization: {     // Use to specify very specific optimizations to apply during the build process that can help make the bundles even smaller, fast, avoid module duplication of packages that are common between enrty points etc.
+        splitChunks: {
+            chunks: 'all' // This tells webpack which chunks (bundles) should be optimized
+        }
+    },
     module: {
         rules: [
             // {
