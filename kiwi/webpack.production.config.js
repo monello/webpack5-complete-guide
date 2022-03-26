@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
     entry: './src/kiwi.js',
@@ -63,6 +64,12 @@ module.exports = {
             title: 'Kiwi',
             description: 'Kiwi',
             template: 'src/page-template.hbs'
+        }),
+        new ModuleFederationPlugin({
+            name: 'KiwiApp',        // Give this application a Name for Module Federation to identify it
+            remotes: {              // The Kiwi App "consumes" components from Hello World App, this is where we describe them
+                HelloWorldApp: 'HelloWorldApp@http://localhost:9001/remoteEntry.js' // Here we describe the application from which we want to consume components. We don't have to list the specific components here, just the application and it's url.
+            }
         })
     ]
 };
