@@ -1,5 +1,4 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -9,16 +8,19 @@ module.exports = {
         'kiwi': './src/kiwi.js'
     },
     output: {
-        filename: '[name].[contenthash].js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, './dist'),
-        publicPath: '/static/'
+        publicPath: ''
     },
-    mode: 'production',
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
-            minSize: 10000,
-            automaticNameDelimiter: '_'
+    mode: 'development',
+    devServer: {
+        port: 9000,
+        static: {
+            directory: path.resolve(__dirname, './dist'),
+        },
+        devMiddleware: {
+            index: 'index.html',
+            writeToDisk: true
         }
     },
     module: {
@@ -39,13 +41,13 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    MiniCssExtractPlugin.loader, 'css-loader'
+                    'style-loader', 'css-loader'
                 ]
             },
             {
                 test: /\.scss$/,
                 use: [
-                    MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'
+                    'style-loader', 'css-loader', 'sass-loader'
                 ]
             },
             {
@@ -68,9 +70,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css'
-        }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             filename: 'hello-world.html',
