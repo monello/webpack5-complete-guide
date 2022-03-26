@@ -1,11 +1,11 @@
-$font-size: 20px;
+$font-size: 1rem;
 $button-background-color: green;
 $button-font-color: white;
 $text-font-color: red;
 
 .hello-world-button {
     font-size: $font-size;
-    padding: 7px 15px;
+    padding: 0.5rem 1rem;
     background: $button-background-color;
     color: $button-font-color;
     outline: none;
@@ -14,4 +14,8 @@ $text-font-color: red;
 .hello-world-text {
     color: $text-font-color;
     font-weight: bold;
+}
+
+h1 {
+    color: orange;
 }
