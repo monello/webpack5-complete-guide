@@ -9,7 +9,7 @@ module.exports = {
     output: {
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, './dist'),
-        publicPath: '/static/'
+        publicPath: 'http://localhost:9002/'
     },
     mode: 'production',
     optimization: {
@@ -67,8 +67,9 @@ module.exports = {
         }),
         new ModuleFederationPlugin({
             name: 'KiwiApp',        // Give this application a Name for Module Federation to identify it
-            remotes: {              // The Kiwi App "consumes" components from Hello World App, this is where we describe them
-                HelloWorldApp: 'HelloWorldApp@http://localhost:9001/remoteEntry.js' // Here we describe the application from which we want to consume components. We don't have to list the specific components here, just the application and it's url.
+            filename: 'remoteEntry.js',
+            exposes: {
+                '.KiwiPage': './src/components/kiwi-page/kiwi-page.js'
             }
         })
     ]

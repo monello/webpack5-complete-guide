@@ -60,7 +60,8 @@ module.exports = {
             name: 'HelloWorldApp',          // Give this application a Name for Module Federation to identify it
             filename: 'remoteEntry.js',     // During the build process Webpack will generate a file that contains everything this Application container exports - here we pick a name for that file
             exposes: {                      // In this Object we describe the components that we want to expose to other applications
-                './HelloWorldButton': './src/components/hello-world-button/hello-world-button.js'  // Name that other apps can reference and the path inside this app to the component we are exposing
+                './HelloWorldButton': './src/components/hello-world-button/hello-world-button.js',  // Name that other apps can reference and the path inside this app to the component we are exposing
+                './HelloWorldPage': './src/components/hello-world-page/hello-world-page.js'
             }
         })
     ]
