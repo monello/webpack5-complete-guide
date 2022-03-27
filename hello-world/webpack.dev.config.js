@@ -8,7 +8,7 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, './dist'),
-        publicPath: 'http://localhost:9001'  // Here we need to tell the Module Federation on which public URL the exposes components can be used. This will be added to the "remoteEntry.js" file we set below in the ModuleFederationPlugin
+        publicPath: 'http://localhost:9001/'  // Here we need to tell the Module Federation on which public URL the exposes components can be used. This will be added to the "remoteEntry.js" file we set below in the ModuleFederationPlugin
     },
     mode: 'development',
     devServer: {
