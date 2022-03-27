@@ -2,7 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { ModuleFederarionPlugin } = require('webpack').container;
+const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
     entry: './src/hello-world.js',
@@ -57,11 +57,11 @@ module.exports = {
             description: 'Hello world',
             template: 'src/page-template.hbs'
         }),
-        new ModuleFederarionPlugin({
+        new ModuleFederationPlugin({
             name: 'HelloWorldApp',          // Give this application a Name for Module Federation to identify it
             filename: 'remoteEntry.js',     // During the build process Webpack will generate a file that contains everything this Application container exports - here we pick a name for that file
             exposes: {                      // In this Object we describe the components that we want to expose to other applications
-                './HelloWorldButton': './src/components/hello-world-button.js'  // Name that other apps can reference and the path inside this app to the component we are exposing
+                './HelloWorldButton': './src/components/hello-world-button/hello-world-button.js'  // Name that other apps can reference and the path inside this app to the component we are exposing
             }
         })
     ]
