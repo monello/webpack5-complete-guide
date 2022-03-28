@@ -1,3 +1,19 @@
+import NavigationBar from './components/navigation-bar/navigation-bar';
+
+const navigationItems = [
+    {
+        url: '/hello-world-page',
+        title: 'Hello World page'
+    },
+    {
+        url: '/kiwi-page',
+        title: 'Kiwi page'
+    }
+];
+
+const navigationBar = new NavigationBar();
+navigationBar.render(navigationItems);
+
 // We need to render a different Micro Frontend depending on the curren URL
 // - the pathname does not incluse the URL or the port. We only want to know the "path"
 const url = window.location.pathname;
