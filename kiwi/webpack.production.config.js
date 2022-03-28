@@ -70,6 +70,9 @@ module.exports = {
             filename: 'remoteEntry.js',
             exposes: {
                 './KiwiPage': './src/components/kiwi-page/kiwi-page.js'
+            },
+            remotes: {
+                ImageCaption: 'ImageCaption@http://localhost:9003/remoteEntry.js'
             }
         })
     ]
