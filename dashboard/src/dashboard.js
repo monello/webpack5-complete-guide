@@ -23,15 +23,14 @@ if (url === '/hello-world-page') {
             // Finally we call it's render() method to render the HelloWorldPage (App) inside the dashboard App
             helloWorldPage.render();
         });
-} else if (url === 'kiwi-page') {
+} else if (url === '/kiwi-page') {
     // The same for the "Kiwi Page"
-    import("KiwiApp/KiwiPage")
+    import('KiwiApp/KiwiPage')
         .then(KiwiPageModule => {
-            const KiwiPage = KiwiPaheModule.default;
+            const KiwiPage = KiwiPageModule.default;
             const kiwiPage = new KiwiPage();
             kiwiPage.render();
         });
 }
-
 
 console.log('dashboard');

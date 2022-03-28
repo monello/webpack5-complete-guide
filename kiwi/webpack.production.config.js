@@ -69,7 +69,7 @@ module.exports = {
             name: 'KiwiApp',        // Give this application a Name for Module Federation to identify it
             filename: 'remoteEntry.js',
             exposes: {
-                '.KiwiPage': './src/components/kiwi-page/kiwi-page.js'
+                './KiwiPage': './src/components/kiwi-page/kiwi-page.js'
             }
         })
     ]

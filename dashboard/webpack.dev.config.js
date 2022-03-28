@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
-    entry: './src/daskboard.js',        // Set the correct entry point
+    entry: './src/dashboard.js',        // Set the correct entry point
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, './dist'),
@@ -12,17 +12,12 @@ module.exports = {
     },
     mode: 'development',
     devServer: {
+        contentBase: path.resolve(__dirname, './dist'),
+        index: 'dashboard.html',    // Set the "index" HTML file for this app
         port: 9000,                     // Update the port
-        static: {
-            directory: path.resolve(__dirname, './dist'),
-        },
-        devMiddleware: {
-            index: 'dashboard.html',    // Set the "index" HTML file for this app
-            writeToDisk: true
-        },
         historyApiFallback: {
-            index: 'dashboard.html'     // This tells Webpack to always return 'dashboard.html' no matter what URL you enter into the Browser        }
-        },
+            index: 'dashboard.html'     // This tells Webpack to always return 'dashboard.html' no matter what URL you enter into the Browser
+        }
     },
     module: {
         rules: [
@@ -32,7 +27,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/env']
+                        presets: ['@babel/env'],
                     }
                 }
             }
@@ -42,7 +37,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             filename: 'dashboard.html',
-            title: 'Dashboard'
+            title: 'Dashboard',
         }),
         new ModuleFederationPlugin({
             name: 'App',        // Give this application a Name for Module Federation to identify it
